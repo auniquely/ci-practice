@@ -1,10 +1,13 @@
 pipeline {
 	agent any
+	tools {
+		go '1.16.7'
 
+	}
 	stages {
 		stage('build'){
 			echo 'Step 1'
-			go build main.go
+			sh 'go build main.go'
 		}
 		stage('test'){
 			echo 'Sample Test'
@@ -13,7 +16,7 @@ pipeline {
 		stage('package'){
 			echo 'Package binary'
 		}
-
+}
 	post{
 		always{
 			echo 'Pipeline has completed'
@@ -23,7 +26,6 @@ pipeline {
 	}
 
 
-	}
-
-
 }
+
+
