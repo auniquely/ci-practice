@@ -1,31 +1,39 @@
 pipeline {
-	agent any
-	tools {
-		go '1.16.7'
+    agent any
 
-	}
-	stages {
-		stage('build'){
-			echo 'Step 1'
-			sh 'go build main.go'
-		}
-		stage('test'){
-			echo 'Sample Test'
-
-		}
-		stage('package'){
-			echo 'Package binary'
-		}
-}
-	post{
-		always{
-			echo 'Pipeline has completed'
-		}
-	
-
+	tools{
+	go '1.16.7'
 	}
 
 
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+		sh 'go build main.go'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+
+
+    post{
+	always {
+		echo 'Pipeline Complete'
+
+
+	}
+
+
+    }
+
 }
-
-
